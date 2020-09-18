@@ -25,7 +25,7 @@ if (check !== null) {
                     console.log(data)
                     jQuery('address').css('opacity','1');
                     check.checked = true
-                    jQuery('#addres-2 address').html(data);
+                    jQuery('#addres-1 address').html(data);
                     jQuery('#addres-2 address').css('display', 'block');
     			}
     		})

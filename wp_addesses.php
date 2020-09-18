@@ -5,7 +5,7 @@ Plugin URI: https://seocontenidos.net/
 Description: add the billing address as shipping address
 Author: carloscode
 Author URI:  https://seocontenidos.net/
-Version: 0.0.1
+Version: 0.0.2
 */
 
 defined( 'ABSPATH' ) || exit;
@@ -42,16 +42,14 @@ Class DireccionesWoocommersHookTemCode {
 
       $woo_customer = wp_get_current_user();
       $metaKeyVals = array(
-          'shipping_first_name' => $this->functioncode->customer->get_billing_first_name(),
-          'shipping_last_name' => $this->functioncode->customer->get_billing_last_name(),
-          'shipping_address_1' => $this->functioncode->customer->get_billing_address_1(),
-          'shipping_address_2' => $this->functioncode->customer->get_billing_address_2(),
-          'shipping_country' => $this->functioncode->customer->get_billing_country(),
-          'shipping_state' => $this->functioncode->customer->get_billing_state(),
-          'shipping_postcode' => $this->functioncode->customer->get_billing_postcode(),
-          'shipping_city' => $this->functioncode->customer->get_billing_city(),
-          'shipping_phone' => $this->functioncode->customer->get_billing_phone(),
-          'shipping_email' => $this->functioncode->customer->get_billing_email()
+          'billing_first_name' => $this->functioncode->customer->get_shipping_first_name(),
+          'billing_last_name' => $this->functioncode->customer->get_shipping_last_name(),
+          'billing_address_1' => $this->functioncode->customer->get_shipping_address_1(),
+          'billing_address_2' => $this->functioncode->customer->get_shipping_address_2(),
+          'billing_country' => $this->functioncode->customer->get_shipping_country(),
+          'billing_state' => $this->functioncode->customer->get_shipping_state(),
+          'billing_postcode' => $this->functioncode->customer->get_shipping_postcode(),
+          'billing_city' => $this->functioncode->customer->get_shipping_city()
       );
       foreach ($metaKeyVals as $key => $val) {
           update_user_meta($woo_customer->ID, $key, $val);
@@ -60,7 +58,7 @@ Class DireccionesWoocommersHookTemCode {
       $get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
 		array(
-			'shipping' => __( 'Dirección de Envío', 'woocommerce' ),
+			'billing' => __( 'Dirección de Envío', 'woocommerce' ),
 		),
 		$this->customer_id
     );
